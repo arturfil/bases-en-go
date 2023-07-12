@@ -36,9 +36,18 @@ func secondCh(ch chan string) {
     ch <- "secondCh DONE\n"
 }*/
 
+func getMaxLen(item string) int {
+    max := 0 
+    if len(item) > max {
+        max = len(item)
+    }
+    return max
+}
+
 func readCSV() {
     f, _ := os.Open("myFile0.csv")
     r := csv.NewReader(f)
+    var maxChar int = 0
     for {
         record, err := r.Read()
         if err == io.EOF {
@@ -46,6 +55,9 @@ func readCSV() {
         }
         if err != nil {
             panic(err)
+        }
+        for _, val := range record {
+            maxChar = getMaxLen(val)
         }
         // fmt.Print("[")
         for _, val := range record {
