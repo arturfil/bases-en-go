@@ -19,3 +19,7 @@
 
 # Go workspace file
 go.work
+
+emails_hondthou.csv
+myFile0.csv
+out

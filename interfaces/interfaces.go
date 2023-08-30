@@ -1,5 +1,7 @@
 package interfaces
 
+// Notes are private
+
 type TeamPlayer interface {
    Score(points int) 
    Defend(points int, success bool)
