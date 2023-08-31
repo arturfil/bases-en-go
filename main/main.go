@@ -4,6 +4,6 @@ import "github.com/artufil/yt-bases/concurrency"
 
 
 func main() {
-   concurrency.WaitGroupsMain() 
+    concurrency.MutexMain()
 }
 
