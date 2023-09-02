@@ -1,44 +1,77 @@
 package interfaces
 
-// Notes are private
+import "fmt"
 
-type TeamPlayer interface {
-   Score(points int) 
-   Defend(points int, success bool)
+/*
+    The Group struct and the Player structs are two different structs for an application that
+    tracks data for a soccer related application
+
+    Both structs have fields where we could get averages
+    As such, I created an interface that shares the expected action Average  
+
+    With this I can create a "generic" function or a shared behavior/method between these two structs
+*/
+
+type Group struct {
+    grades[] int
+    name string
+    admin string
 }
 
-type GameScore struct {
-    Us int
-    Oposittion int
+type Player struct {
+    reviews[] int
+    name string
+    position string
 }
 
-type Rectangle struct {
-    height, base int
+type Average interface {
+   Average() float32 
 }
 
-type Square struct {
-    edge int 
+func (g *Group) Average() float32 {
+    var sum float32 = 0
+    for _, grade := range g.grades {
+        sum += float32(grade) 
+    }
+
+    avg := sum / float32(len(g.grades))
+    return avg
 }
 
-func (s *Square) calculateArea() float32 {
-    area := float32(s.edge * s.edge)
-    return area
+func (p *Player) Describe() {
+    fmt.Println("This player is", p.name, "and plays in position", p.position)
 }
 
-func (r *Rectangle) calculateArea() float32 {
-    area := float32(r.base * r.height)
-    return area
+func (p *Player) Average() float32 {
+    var sum float32 = 0
+    for _, val := range p.reviews {
+        sum += float32(val)
+    }
+    avg := sum / float32(len(p.reviews))
+    return avg
 }
 
-func InterfaceMain() {
-    var cristiano TeamPlayer
-    cristiano = NewSoccerPlayer("Cristiano Ronaldo", "Manchester United")
-    cristiano.Score(1)
-    cristiano.Defend(1, false)
+func PrintAverage(a Average) {
+    fmt.Printf("The avg is: %.2f\n", a.Average())
+}
+	
+func InterfacesMain() {
 
-    var jimmyButter TeamPlayer = NewBasketBallPlayer("Jimmy Buttler", "Miami Heat")
-    jimmyButter.Score(3)
-    jimmyButter.Defend(2, true)
+    rooftopGroup := &Group{
+        grades: []int {2,3,4,5,6,7,7,8,9},
+        name: "Rooft Top Soccer Group",
+        admin: "Chamo",
+    } 
+
+    arturo := &Player{
+        reviews: []int {1,2,3,6,7,8,6,5,4,4},
+        name: "Arturo", 
+        position: "attacking midfield",
+    }
+
+    arturo.Describe() 
+
+    PrintAverage(arturo)
+    PrintAverage(rooftopGroup)
 
 }
-
