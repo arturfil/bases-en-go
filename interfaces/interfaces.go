@@ -33,13 +33,14 @@ func (g *Group) Average() float32 {
     for _, grade := range g.grades {
         sum += float32(grade) 
     }
-
-    avg := sum / float32(len(g.grades))
-    return avg
+    return sum / float32(len(g.grades)) // average computed
 }
 
 func (p *Player) Describe() {
-    fmt.Println("This player is", p.name, "and plays in position", p.position)
+    fmt.Println(
+        "This player is", p.name, 
+        "and plays in position", p.position,
+    )
 }
 
 func (p *Player) Average() float32 {
@@ -47,14 +48,13 @@ func (p *Player) Average() float32 {
     for _, val := range p.reviews {
         sum += float32(val)
     }
-    avg := sum / float32(len(p.reviews))
-    return avg
+    return sum / float32(len(p.reviews))
 }
 
 func PrintAverage(a Average) {
     fmt.Printf("The avg is: %.2f\n", a.Average())
 }
-	
+
 func InterfacesMain() {
 
     rooftopGroup := &Group{
