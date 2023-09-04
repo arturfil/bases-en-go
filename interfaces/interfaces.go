@@ -1,15 +1,21 @@
 package interfaces
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/artufil/yt-bases/groups"
+	"github.com/artufil/yt-bases/players"
+	"github.com/artufil/yt-bases/printer"
+)
 
 /*
-    The Group struct and the Player structs are two different structs for an application that
-    tracks data for a soccer related application
+   The Group struct and the Player structs are two different structs for an application that
+   tracks data for a soccer related application
 
-    Both structs have fields where we could get averages
-    As such, I created an interface that shares the expected action Average  
+   Both structs have fields where we could get averages
+   As such, I created an interface that shares the expected action Average
 
-    With this I can create a "generic" function or a shared behavior/method between these two structs
+   With this I can create a "generic" function or a shared behavior/method between these two structs
 */
 
 type Group struct {
@@ -57,21 +63,12 @@ func PrintAverage(a Average) {
 
 func InterfacesMain() {
 
-    rooftopGroup := &Group{
-        grades: []int {2,3,4,5,6,7,7,8,9},
-        name: "Rooft Top Soccer Group",
-        admin: "Chamo",
-    } 
+    rooftopGroup := groups.New([]int {2,2,3,2,2}, "Rooftop", "Chamo")
 
-    arturo := &Player{
-        reviews: []int {1,2,3,6,7,8,6,5,4,4},
-        name: "Arturo", 
-        position: "attacking midfield",
-    }
+    arturo := players.New([]int {3,2,3,3,3,2}, "Arturo", "Midfield")
 
-    arturo.Describe() 
+    fmt.Printf("%.2f\n", printer.Average(rooftopGroup))
 
-    PrintAverage(arturo)
-    PrintAverage(rooftopGroup)
+    fmt.Printf("%.2f\n", printer.Average(arturo))
 
 }
