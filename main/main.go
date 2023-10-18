@@ -1,11 +1,10 @@
 package main
 
 import (
-	"github.com/artufil/yt-bases/interfaces"
+	"github.com/artufil/yt-bases/concurrency"
 )
 
-
 func main() {
-    interfaces.InterfacesMain() 
+    concurrency.WorkersMain()
 }
 

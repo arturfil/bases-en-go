@@ -63,12 +63,10 @@ func PrintAverage(a Average) {
 
 func InterfacesMain() {
 
-    rooftopGroup := groups.New([]int {2,2,3,2,2}, "Rooftop", "Chamo")
-
+    rooftopGroup := groups.New([]int {2,2,3,2,2}, "Rooftop", "Juan")
     arturo := players.New([]int {3,2,3,3,3,2}, "Arturo", "Midfield")
 
     fmt.Printf("%.2f\n", printer.Average(rooftopGroup))
-
     fmt.Printf("%.2f\n", printer.Average(arturo))
 
 }
